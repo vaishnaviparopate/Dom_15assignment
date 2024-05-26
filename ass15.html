@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slide-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            box-shadow: 3px 3px 3px 3px rgb(175, 198, 190);
+            background-color: rgb(175, 198, 190);
+        }
+        .slide {
+            display: none;
+            text-align: center;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            left: 60px;
+            top:40px;
+        }
+        .slide img {
+            width: 100%;
+        }
+        .slide.active {
+            display: block;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+        .btn-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: darkkhaki;
+        }
+        #pg{
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="slide active">
+            <img src="image/photo6.jpeg" class="slide-img" alt="image" >
+            <h1>1</h1>
+        </div>
+        <div class="slide">
+            <h1>2</h1>
+        </div>
+        <div class="slide">
+            <img src="image/photo7.jpeg" class="slide-img" alt="image">
+            <h1>3</h1>
+        </div>
+        <div class="slide">
+            <img src="image/me2.jpg" class="person-img" alt="image" id="pg">
+            <h4>jia</h4>
+            <h1>4</h1>
+        </div>
+    </div>
+    <div class="btn-container">
+        <button type="button" class="prevBtn">Prev</button>
+        <button type="button" class="nextBtn">Next</button>
+    </div>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prevBtn');
+        const nextBtn = document.querySelector('.nextBtn');
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        });
+
+        prevBtn.addEventListener('click', () => {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+        });
+    </script>
+</body>
+</html>
+
+
