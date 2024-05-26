@@ -1,0 +1,164 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav_Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .nav-center {
+            width: 96%; 
+            max-width: 1350px;
+            background-color: white;
+            height: 80px;
+            border: 1px solid black;
+            box-shadow: 5px 5px 5px 5px rgb(123, 148, 165);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: auto;
+        }
+        .links {
+            display: flex;
+            list-style-type: none; 
+            gap: 30px;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .links a {
+            text-decoration: none; 
+            color: black;
+            display: flex; 
+            align-items: center;
+        }
+        .links a i {
+            margin-right: 8px; 
+        }
+        .links a:hover {
+            color: rgb(77, 149, 232); }
+        .btn {
+            display: none; 
+            font-size: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease; /
+        }
+        .btn.active {
+            transform: rotate(90deg); 
+        }
+        .logo {
+            height: 60px;
+        }
+        .icon {
+            display: flex;
+            gap: 15px;
+            
+        }
+        .icon a {
+            color: rgb(77, 149, 232);
+        }
+        .show-links {
+            display: block;
+        }
+        .links {
+            height: auto; 
+            transition: height 0.3s ease;
+            overflow: hidden;
+        }
+        @media (max-width: 800px) {
+            .nav-center {
+                flex-direction: column; 
+                align-items: flex-start;
+                height: auto;
+                padding: 10px;
+            }
+            .btn {
+                display: block; 
+            }
+            .links {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+            }
+            .links.show-links {
+                display: flex; 
+                height: auto;
+            }
+            .links a {
+                padding: 10px 0;
+                width: 100%;
+                text-align: left;
+            }
+            .icon {
+                display: none; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-center">
+            <div class="container">
+                <img src="image/logo.jpeg" class="logo">
+                <button class="btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <ul class="links">
+                <li>
+                    <a href="index.html" class="H">Home</a> 
+                </li>
+                <li>
+                    <a href="about.html" class="H">About</a> 
+                </li>
+                <li>
+                    <a href="project.html" class="H">Project</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="H">Contact</a> 
+                </li>
+            </ul>
+            <ul class="icon" type="none">
+                <li>
+                    <a href="https://www.facebook.com/facebook/"><i class="fa-brands fa-facebook i"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-twitter i"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin i"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.behance.net"><i class="fa-brands fa-behance i"></i></a>
+                </li>
+                <li>
+                    <a href="https://www.gem.com"><i class="fa-solid fa-gem i"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        const btn = document.querySelector(".btn");
+        const links = document.querySelector(".links");
+
+        btn.addEventListener("click", function () {
+            links.classList.toggle("show-links");
+            btn.classList.toggle("active"); 
+            
+            
+            const btnIcon = btn.querySelector("i");
+            btnIcon.classList.toggle("fa-bars");
+            btnIcon.classList.toggle("fa-times");
+        });
+       
+    </script>
+</body>
+</html>
+
+
+

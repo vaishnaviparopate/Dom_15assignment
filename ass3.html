@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-M1ytAHswD5td5Z7xLtSu5FJg+8RAjpdr4uvF2uCwDJFrrCq5IYeDJbFJ5E3tbLRV/8PUM8YUpGnYp24L4XPSXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .img_container{
+            width:150px;
+            height: 150px;
+            border-radius:50%;
+            
+            margin-left: 120px;
+            background-color: rgb(97, 186, 245);;
+            
+
+        }
+        .container{
+            width: 400px;
+            height:500px;
+            border: 1px solid black;
+            margin-left: 400px;
+            text-align: center;
+            overflow: hidden;
+            box-shadow: 5px 5px 5px 5px rgb(123, 148, 165);
+
+            
+        }
+        #person-image{
+            width:140px;
+            height: 140px;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-top: 5px;
+            object-fit: cover;
+            object-position: center;
+
+        }
+        .underline{
+            background-color: rgb(0, 132, 255);
+            width: 60px;
+            height: 2px;
+            position: relative;
+            top:160px;
+            left:170px
+        }
+        #job{
+            color: rgb(0, 132, 255);
+        }
+        .right{
+            
+            color: black;
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 20px;
+        }
+        .prev-btn{
+            width:30px;
+            height: 30px;
+            color: azure;
+        }
+        .next-btn{
+            width:30px;
+            height: 30px;
+            color: azure;
+        }
+
+
+        #left{
+            width:20px;
+            height: 20px;
+            color:rgb(0, 132, 255);
+        }
+        #right{
+            width:20px;
+            height: 20px;
+            color:rgb(0, 132, 255);
+        }
+        #quote{
+            width:25px;
+            height: 25px;
+            color:rgb(0, 132, 255);
+            position: absolute;
+            top:90px;
+            left:540px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+
+        }
+        .random-btn{
+            width:120px;
+            height: 25px;
+            border-radius: 10px ;
+            margin-top: 10px;
+            border-color: rgb(0, 132, 255);;
+            color: rgb(0, 132, 255);;
+        }
+    </style>
+</head>
+<body>
+    <section class="container" >
+        <div class="tile">
+            <h2>Our Reviews</h2>
+            <div class="underline"></div>
+        </div>
+        <article class="review" >
+            <div class="img_container">
+                <img src="image/me2.jpg" id="person-image" alt="image"/>
+                
+                <img src="image/q1.jpg" id="quote">
+            </div>
+            <div class="information">
+                <h4 id="author">Vaishnavi Paropate</h4>
+                <p id="job">WEB DEVELOPER</p>
+                <P id="info">Lorem ipsum dolor sit amet consectetur 
+                    adipisicing elit. 
+                    Sit, veniam! Neque eaque 
+                    rerum nesciunt voluptatum. 
+                    Rem laboriosam doloribus officiis adipisci ducimus explicabo facilis nam 
+                    provident eius eos fugiat, suscipit nulla.
+                </P>
+            </div>
+                <div class="btn_container">
+                    <button class="prev-btn">
+                      
+                        <img src="image/left4.png" id="left">
+                    </button>
+                    <button class="next-btn">
+                        
+                        <img src="image/right2.png" id="right">
+                    </button>
+
+                </div>
+                <button class="random-btn">Suprise Me</button>
+           
+        </article>
+    </section>
+    <script>
+        const Reviews=[
+
+                {
+                    id:1,
+                    name: "Vaishanu paropate",
+                    job:"Fullstack Developer",
+                    img:"image/me1.jpg",
+                    text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim"
+           
+                },
+                {    
+                id :2,
+                name: "Shweta Darwai",
+                job:"Web Designer",
+                img:"image/shweta.jpg",
+                text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim"
+                },
+                {
+                id :3,
+                name: "Sapna Bhamdare",
+                job:"Backend Developer",
+                img:"image/dinki1.jpg",
+                text:"it is a long established fact that a reader will content of a page when looking at its layout. The poin of using Lorem Ipsum is that it has a more-or-less normal distribution o letters, as opposed to using Content here, content here', making it look "
+                },
+                {
+                id:4,
+                name: "Samiksha Neware",
+                job:"Culture Coordinator",
+                img:"image/sami.jpg",
+                text: "Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specim"
+             
+                }
+               
+        ]
+
+    
+        const img=document.getElementById("person-image");
+        const author=document.getElementById("author");
+        const job=document.getElementById("job");
+        const info=document.getElementById("info");
+
+        const preBtn=document.querySelector(".prev-btn");
+        const nextBtn=document.querySelector(".next-btn");
+        const randomBtn=document.querySelector(".random-btn");
+
+        let currentItem = 0;
+
+        window.addEventListener('DOMContentLoaded',function(){
+            
+            showPerson(currentItem);
+        });
+
+        function showPerson(person){
+            const item = Reviews[person];
+            img.src = item.img;
+            author.textContent = item.name;
+            job.textContent= item.job;
+            info.textContent = item.text;
+        }
+        nextBtn.addEventListener("click",function(){
+            currentItem++;
+            if(currentItem > Reviews.length-1){
+                currentItem = 0;
+            }
+            showPerson(currentItem);
+        });
+        preBtn.addEventListener("click",function(){
+            currentItem--;
+            if(currentItem < 0){
+                currentItem = Reviews.length-1;
+            }
+            showPerson(currentItem);
+        });
+        randomBtn.addEventListener("click",function(){
+            currentItem = Math.floor(Math.random() * Reviews.length)
+            console.log (currentItem);
+            showPerson(currentItem);
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change_Backcolor</title>
+    <style>
+        .container{
+            text-align: center;
+            margin-left: 400px;
+            margin-top: 200px;
+            
+            
+        }
+        .box{
+            border:1px solid black;
+            width:500px;
+            background-color:darkgray;
+            border-radius: 20px;
+            
+        }
+
+        h2{
+            font-size: 40px;
+        }
+        .colorTake{
+            font-size: 30px;
+            /* padding:20px; */
+            /* margin:20px */
+        }
+        #btn{
+            font-size: 20px;
+            height: 30px; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+        <h2> Background Color :</h2>
+        <span class="colorTake">#f1f5f8</span><br>
+        <button id="btn">Click Me</button>
+        </div>
+    </div>
+    <script>
+        const colorPiker=["red","green","rgba(134,220,236)","#f15345","pink","purple"];
+
+        const btn=document.getElementById("btn");
+        const colorTake=document.querySelector(".colorTake");
+        
+        btn.addEventListener("click",function(){
+            const randomNumber=printRandom();
+            document.body.style.backgroundColor=colorPiker[randomNumber];
+            colorTake.textContent=colorPiker[randomNumber];
+
+        })
+        function printRandom(){
+            return Math.floor(Math.random()*colorPiker.length);
+        }
+    </script>
+</body>
+</html>

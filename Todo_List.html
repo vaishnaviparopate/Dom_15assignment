@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo_list</title>
+    <style>
+        form{
+            text-align: center;
+        }
+        input{
+            padding: 0.5rem;
+            border-radius: 5px;
+            border:5px solid darkolivegreen;
+        }
+        .btn{
+            color:white;
+            padding:10px;
+            background-color: darkolivegreen;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            font-size: 1rem;
+        }
+        table{
+            margin:48px auto;
+            padding: 10px 0;
+            border-radius: 5px;
+
+        }
+        th{
+            background-color: darkolivegreen;
+            border-radius: 5px solid black;
+            padding: 7px 70px;
+            color:white;
+         }
+         .removeBtn{
+            padding:5px;
+            background-color: rgb(235, 244, 98);
+         }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="enter your name..." class="name">
+        <input type="email" placeholder="enter your email..." class="email">
+        <input type="number" placeholder="enter your number..." class="number">
+        <button class="btn">Add Row</button>
+    </form> 
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No.</th>
+            <th class="action">Action</th>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td>john</td>
+                <td>john@.com</td>
+                <td>6437389</td>
+            </tr> -->
+        </tbody>
+    </table>
+    <script>
+        let formTag=document.querySelector("form");
+        let tableTag=document.querySelector("table");
+        let tbodyTag=document.querySelector("tbody");
+
+        function Add(details){
+            details.preventDefault();  //prevent pge reloadinng
+            
+        let name=document.querySelector(".name").value;
+        let email=document.querySelector(".email").value;
+        let number=document.querySelector(".number").value;
+        console.log(name,email,number);
+
+
+        if(!name || !email || !number){
+            alert ("all fields are required")
+            return
+        }
+        if(number.length !=10){
+            alert ("number should be 10 digits")
+            return
+        }
+
+            tbodyTag.innerHTML += `
+                <tr>
+                   <td>${name}</td> 
+                   <td>${email}</td> 
+                   <td>${number}</td> 
+                   <td><button class="removeBtn">Remove</button></td>
+                </tr>
+                
+            `;
+            cleared();
+                
+        }
+
+        
+        formTag.addEventListener("submit",Add);
+        function Remove(details){
+            if(details .target.classList.contains("removeBtn")){
+                details.target.parentElement.parentElement.remove();
+            }
+        }
+        tableTag.addEventListener("click",Remove)
+
+        function cleared(details){
+           document.querySelector(".name").value="";
+           document.querySelector(".email").value="";
+           document.querySelector(".number").value="";
+   
+            }
+   
+
+        
+// The inputs should be cleared after adding a row
+// Form should not be submitted if any of the input fields are empty
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question_Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .questions {
+            background-color: rgb(241, 249, 246);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .question-btn {
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: rgb(209, 186, 55);
+            transition: transform 0.3s ease;
+        }
+
+        h2 {
+            font-style: oblique;
+            font-size: 40px;
+            text-align: center;
+            color: rgb(209, 186, 55);
+        }
+
+        .question {
+            width: 450px;
+            margin: 1rem auto;
+            padding: 1rem;
+            background-color: antiquewhite;
+            border-radius: 0.5rem;
+            box-shadow: 2px 2px 2px 2px rgb(217, 228, 236)
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        .question-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question-text {
+            display: none;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .show-text .question-text {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section class="questions">
+        <div class="title">
+            <h2>General Question</h2>
+        </div>
+        <div class="section-center">
+            <article class="question">
+                <div class="question-title">
+                    <p>Do you accept all major credit cards?</p>
+                    <button type="button" class="question-btn">
+                        <span class="plus-icon"><i class="far fa-plus-square"></i></span>
+                        <span class="minus-icon" style="display: none;"><i class="far fa-minus-square"></i></span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio sunt animi nulla incidunt, architecto eligendi aspernatur magni nisi assumenda itaque, ipsam temporibus minima laboriosam perferendis, vel dignissimos velit! Repellat, ducimus?</p>
+                </div>
+            </article>
+
+            <article class="question">
+                <div class="question-title">
+                    <p>Do you support local farmers?</p>
+                    <button type="button" class="question-btn">
+                        <span class="plus-icon"><i class="far fa-plus-square"></i></span>
+                        <span class="minus-icon" style="display: none;"><i class="far fa-minus-square"></i></span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio sunt animi nulla incidunt, architecto eligendi aspernatur magni nisi assumenda itaque, ipsam temporibus minima laboriosam perferendis, vel dignissimos velit! Repellat, ducimus?</p>
+                </div>
+            </article>
+
+            <article class="question">
+                <div class="question-title">
+                    <p>Do you use organic ingredients?</p>
+                    <button type="button" class="question-btn">
+                        <span class="plus-icon"><i class="far fa-plus-square"></i></span>
+                        <span class="minus-icon" style="display: none;"><i class="far fa-minus-square"></i></span>
+                    </button>
+                </div>
+                <div class="question-text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio sunt animi nulla incidunt, architecto eligendi aspernatur magni nisi assumenda itaque, ipsam temporibus minima laboriosam perferendis, vel dignissimos velit! Repellat, ducimus?</p>
+                </div>
+            </article>
+        </div>
+    </section>
+    <script>
+        const questions = document.querySelectorAll(".question");
+
+        questions.forEach(function(question) {
+            const btn = question.querySelector(".question-btn");
+            const plusIcon = btn.querySelector(".plus-icon");
+            const minusIcon = btn.querySelector(".minus-icon");
+
+            btn.addEventListener("click", function() {
+                const isActive = question.classList.contains("show-text");
+
+                // Hide all answers first
+                questions.forEach(function(item) {
+                    item.classList.remove("show-text");
+                    item.querySelector(".minus-icon").style.display = "none";
+                    item.querySelector(".plus-icon").style.display = "inline";
+                });
+
+                // Show the current answer if it was not active before
+                if (!isActive) {
+                    question.classList.add("show-text");
+                    plusIcon.style.display = "none";
+                    minusIcon.style.display = "inline";
+                } else {
+                    question.classList.remove("show-text");
+                    plusIcon.style.display = "inline";
+                    minusIcon.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

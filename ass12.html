@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ipnone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .section-center {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .gift-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            box-shadow: 3px 3px 3px 3px rgb(199, 206, 216);
+        }
+
+        .gift-img img {
+            max-width: 100%;
+            padding:20px;
+            height:400px;
+            border-radius: 10px;
+        }
+
+        .gift-info {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .deadline {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .deadline-format {
+            text-align: center;
+            width: 70px;
+            height: 100px;
+            background-color: rgb(34, 33, 33);
+            color: aliceblue;
+        }
+
+        .deadline-format div {
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .section-center {
+                flex-direction: column;
+            }
+        }
+        h3{
+            color:green
+        }
+    </style>
+</head>
+<body>
+    <section class="section-center">
+        <article class="gift-img">
+            <img src="image/iphone.jpeg" alt="gift picture"/>
+        </article>
+        <article class="gift-info">
+            <h3>OLD IPHONE GIVEAWAY</h3>
+            <h4 class="giveaway">
+                Giveaway Ends On Sunday, 2 June 2024 8:00am
+            </h4>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam laboriosam quae dolorem voluptatem nesciunt a hic mollitia aperiam reiciendis earum cumque, quo iure facere magnam facilis odit nulla excepturi aut.
+            </p>
+            <div class="deadline">
+                <div class="deadline-format">
+                    <div>
+                        <h4 class="days">0</h4>
+                        <span>DAYS</span>
+                    </div>
+                </div>
+                <div class="deadline-format">
+                    <div>
+                        <h4 class="hours">0</h4>
+                        <span>HOURS</span>
+                    </div>
+                </div>
+                <div class="deadline-format">
+                    <div>
+                        <h4 class="mins">0</h4>
+                        <span>MINS</span>
+                    </div>
+                </div>
+                <div class="deadline-format">
+                    <div>
+                        <h4 class="secs">0</h4>
+                        <span>SECS</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <script>
+        const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+        const weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ];
+
+        const giveaway = document.querySelector(".giveaway");
+        const deadline = document.querySelector(".deadline");
+        const items = document.querySelectorAll(".deadline-format h4");
+
+        // Set future date to one week from now
+        const futureDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+        const futureTime = futureDate.getTime();
+
+        giveaway.textContent = `Giveaway Ends On ${weekdays[futureDate.getDay()]}, ${futureDate.getDate()} ${months[futureDate.getMonth()]} ${futureDate.getFullYear()} ${futureDate.getHours()}:${String(futureDate.getMinutes()).padStart(2, '0')}am`;
+
+        function getRemainingTime() {
+            const today = new Date().getTime();
+            const t = futureTime - today;
+
+            // Time calculations
+            const oneDay = 24 * 60 * 60 * 1000;
+            const oneHour = 60 * 60 * 1000;
+            const oneMinute = 60 * 1000;
+
+            let days = Math.floor(t / oneDay);
+            let hours = Math.floor((t % oneDay) / oneHour);
+            let mins = Math.floor((t % oneHour) / oneMinute);
+            let secs = Math.floor((t % oneMinute) / 1000);
+
+            // Set values
+            const values = [days, hours, mins, secs];
+            items.forEach((item, index) => {
+                item.innerHTML = values[index];
+            });
+        }
+
+        // Countdown
+        let countdown = setInterval(getRemainingTime, 1000);
+        getRemainingTime();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu_Project</title>
+    <style>
+        .title {
+            font-size: 30px;
+            position: relative;
+            bottom: 40px;
+            text-align: center;
+        }
+        .underline {
+            width: 150px;
+            height: 3px;
+            border: 1px solid rgb(191, 174, 82);
+            background-color: rgb(191, 174, 82);
+            margin: 0 auto;
+            position: relative;
+            bottom: 20px;
+        }
+        .photo {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border: 4px solid rgb(191, 174, 82);
+            border-radius: 20px;
+        }
+        h4 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .price {
+            color: red;
+            position: relative;
+            bottom: 20px;
+            left: 130px;
+        }
+        hr {
+            border-style: dotted;
+            width: 300px;
+            margin-top: 10px;
+        }
+        .pre1 {
+            margin-top: 10px;
+        }
+        .menu-item {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .section-center {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            justify-items: center;
+        }
+        .item-info {
+            margin-top: 10px;
+        }
+        .item-text {
+            display: flex;
+        }
+        .menu {
+            width: 1000px;
+            position: relative;
+            left: 120px;
+            padding: 50px;
+        }
+        .menu-item {
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 250px;
+        }
+        .item-text {
+            margin-top: 10px;
+            width: 300px;
+            text-align: center;
+        }
+        .btn-container {
+            width: 700px;
+            height: 50px;
+            text-align: center;
+            position: relative;
+            bottom: 20px;
+            left: 190px;
+            
+            
+        }
+        .filter-btn {
+            width: 150px;
+            height: 40px;
+            margin: 0 5px;
+            background-color: rgb(191, 174, 82);
+            color: white;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+        }
+        .filter-btn.active {
+            background-color:rgb(191, 174, 82);
+        }
+    </style>
+</head>
+<body>
+    <section class="menu">
+        <div class="title">
+            <h2>Our Menu</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="btn-container">
+            <button class="filter-btn active" type="button" btn-id="All">All</button>
+            <button class="filter-btn" type="button" btn-id="Breakfast">Breakfast</button>
+            <button class="filter-btn" type="button" btn-id="Lunch">Lunch</button>
+            <button class="filter-btn" type="button" btn-id="Shake">Shakes</button>
+        </div>
+        <div class="section-center">
+        </div>
+    </section>
+    <script>
+        const menu = [
+            {
+                id: 1,
+                title: "Rawa Upma",
+                category: "Breakfast",
+                price: "$40",
+                img: "image/i1.jpg",
+                desc: `Here is the traditional South Indian 
+                breakfast dish. Various seasoning and 
+                vegetables can be added during cooking 
+                as per your preference.`
+            },
+            {
+                id: 2,
+                title: "Besan chilla",
+                category: "Breakfast",
+                price: "$40",
+                img: "image/i2.png",
+                desc: `Easily made with chickpea flour, the chillas taste best when served hot with coriander chutney or curd.`
+            },
+            {
+                id: 3,
+                title: "North Indian Lunch",
+                category: "Lunch",
+                price: "$100",
+                img: "image/l1.jpeg",
+                desc: `North Indian Cuisine is a part of the Indian Cuisine which includes the food of the diverse regions of North India.`
+            },
+            {
+                id: 4,
+                title: "Tamil Lunch",
+                category: "Lunch",
+                price: "$150",
+                img: "image/l2.jpg",
+                desc: `A Typical Tamil Lunch is a well-organized 
+                     list of menus to go with the main South Indian 
+                     staple “rice” and serving food in banana leaf is a special custom in most of the southern states like Karnataka.`
+            },
+            {
+                id: 5,
+                title: "Paneer Makhani",
+                category: "Dinner",
+                price: "$150",
+                img: "image/d1.jpg",
+                desc: `Enjoy an amazing paneer makhani or 
+                paneer lababdar dish.`
+            },
+            {
+                id: 6,
+                title: "Kalyan West",
+                category: "Dinner",
+                price: "$150",
+                img: "image/d2.webp",
+                desc: `Enjoy an amazing kalyan west ,
+            As good as the Indian restaurant can
+            be, it never really hits the spot entirely.`
+            },
+            {
+                id: 7,
+                title: "Oreo Milkshake ",
+                category: "Shake",
+                price: "$70",
+                img: "image/s1.jpg",
+                desc: `This Creamy Oreo Milkshake (Cookies 
+            and Cream Milkshake) requires 4 ingredients (no
+            chocolate syrup) and 5 minutes from start to finish. 
+            Thick, creamy, and easy to make, .`
+            },
+            {
+                id: 8,
+                title: "Milkshake",
+                category: "Shake",
+                price: "$150",
+                img: "image/s2.jpg",
+                desc: `These milkshakes are thick, 
+            creamy, and so addictive that you’ll be 
+            trying to drink every last drop. They're 
+            the perfect treat for any time of the year, 
+            so here’s`
+            }
+        ];
+
+        const sectionCenter = document.querySelector(".section-center");
+        const filterBtns = document.querySelectorAll(".filter-btn");
+
+        window.addEventListener("DOMContentLoaded", function () {
+            displayMenuItems(menu);
+        });
+
+        filterBtns.forEach(function (btn) {
+            btn.addEventListener("click", function (e) {
+                filterBtns.forEach(function (btn) {
+                    btn.classList.remove("active");
+                });
+                e.currentTarget.classList.add("active");
+
+                const category = e.currentTarget.getAttribute("btn-id");
+                const menuCategory = menu.filter(function (menuItem) {
+                    if (menuItem.category === category || category === "All") {
+                        return menuItem;
+                    }
+                });
+                displayMenuItems(menuCategory);
+            });
+        });
+
+        function displayMenuItems(menuItems) {
+            let displayMenu = menuItems.map(function (item) {
+                return `<article class="menu-item">
+                    <img src="${item.img}" class="photo" alt="${item.title}">
+                    <div class="item-info">
+                        <h4>${item.title}</h4>
+                        <h4 class="price">${item.price}</h4>
+                        <hr>
+                    </div>
+                    <p class="item-text">${item.desc}</p>
+                </article>`;
+            });
+            displayMenu = displayMenu.join("");
+            sectionCenter.innerHTML = displayMenu;
+        }
+    </script>
+</body>
+</html>
+

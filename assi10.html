@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --clr-primary-1: hsl(205,86%,17%);
+            --clr-primary-2: hsl(205,77%,27%);
+            --clr-primary-3: hsl(205,72%,37%);
+            --clr-primary-4: hsl(205,63%,48%);
+            --clr-primary-5: #49a6e9;
+            --clr-primary-6: hsl(205,89%,70%);
+            --clr-primary-7: hsl(205,90%,76%);
+            --clr-primary-8: hsl(205,86%,81%);
+            --clr-primary-9: hsl(205,90%,88%);
+            --clr-primary-10: hsl(205,100%,96%);
+            --clr-white: #ffffff;
+            --clr-grey-1: #333;
+            --clr-grey-5: #777;
+            --spacing: 0.1rem;
+            --transition: all 0.3s linear;
+            --radius: 0.25rem;
+            --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background: var(--clr-white);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--light-shadow);
+            position: relative;
+            z-index: 1000;
+        }
+        .nav-center {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-toggle {
+            font-size: 1.5rem;
+            color: var(--clr-grey-1);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+        .nav-toggle:hover {
+            color: var(--clr-primary-5);
+        }
+        .logo {
+            height: 50px;
+        }
+        .links-container {
+            display: flex;
+        }
+        .links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .links a {
+            color: var(--clr-grey-5);
+            font-size: 1.1rem;
+            text-transform: capitalize;
+            letter-spacing: var(--spacing);
+            display: block;
+            transition: var(--transition);
+            font-weight: bold;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            text-decoration: none;
+        }
+        .links a:hover {
+            color: var(--clr-primary-5);
+        }
+        .links-container.show-links {
+            display: block;
+        }
+        @media screen and (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .links-container {
+                display: none;
+                flex-direction: column;
+            }
+            .links-container.show-links {
+                display: flex;
+            }
+        }
+        header {
+            background-image: url('image/nature.jpeg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        .banner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--clr-white);
+        }
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background: var(--clr-primary-5);
+            color: var(--clr-white);
+            padding: 0.5rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: var(--spacing);
+            display: inline-block;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-white {
+            background: var(--clr-white);
+            color: var(--clr-primary-5);
+        }
+        .btn:hover {
+            background: var(--clr-primary-4);
+            color: var(--clr-white);
+        }
+        section {
+            padding: 5rem 0;
+        }
+        .title h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .title span {
+            color: var(--clr-primary-5);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--clr-primary-10);
+        }
+        footer p {
+            margin: 0;
+            color: var(--clr-grey-5);
+        }
+        .scroll-link {
+            text-decoration: none;
+        }
+        .top-link {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--clr-primary-5);
+            color: var(--clr-white);
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: var(--light-shadow);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+        .top-link.show-top-link {
+            opacity: 1;
+            visibility: visible;
+        }
+        .top-link:hover {
+            background: var(--clr-primary-4);
+        }
+    </style>
+</head>
+<body>
+    <header id="home">
+        <nav id="nav">
+            <div class="nav-center">
+                <div class="nav-header">
+                    <img src="image/codinglogo.svg" alt="logo" class="logo"/>
+                    <button class="nav-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="links-container">
+                    <ul class="links">
+                        <li><a href="#home" class="scroll-link">Home</a></li>
+                        <li><a href="#about" class="scroll-link">About</a></li>
+                        <li><a href="#services" class="scroll-link">Services</a></li>
+                        <li><a href="#tours" class="scroll-link">Tours</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="banner">
+            <div class="container">
+                <h1>SCROLL PROJECT</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, distinctio illo vero sapiente odio necessitatibus veniam minus ratione rem animi, explicabo magni dicta ipsa beatae modi? Eveniet vel non impedit.</p>
+                <a href="#tours" class="scroll-link btn btn-white">EXPLORE TOURS</a>
+            </div>
+        </div>
+    </header>
+    <section id="about">
+        <div class="title">
+            <h2>ABOUT <span>US</span></h2>
+        </div>
+    </section>
+    <section id="services">
+        <div class="title">
+            <h2>OUR <span>SERVICES</span></h2>
+        </div>
+    </section>
+    <section id="tours">
+        <div class="title">
+            <h2>FEATURED <span>TOURS</span></h2>
+        </div>
+    </section>
+    <footer class="section">
+        <p>copyright &copy; backroads travel tours company<span class="date"></span>. all rights reserved</p>
+    </footer>
+    <a href="#home" class="scroll-link top-link">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <script>
+        const date = document.querySelector('.date');
+        date.textContent = new Date().getFullYear();
+
+        const navToggle = document.querySelector('.nav-toggle');
+        const linksContainer = document.querySelector('.links-container');
+        const links = document.querySelector('.links');
+
+        navToggle.addEventListener("click", function() {
+            linksContainer.classList.toggle("show-links");
+        });
+
+        const navbar = document.getElementById("nav");
+        const topLink = document.querySelector(".top-link");
+
+        window.addEventListener("scroll", function() {
+            const scrollHeight = window.pageYOffset;
+            const navHeight = navbar.getBoundingClientRect().height;
+            if (scrollHeight > navHeight) {
+                navbar.classList.add("fixed-nav");
+            } else {
+                navbar.classList.remove("fixed-nav");
+            }
+            if (scrollHeight > 500) {
+                topLink.classList.add("show-top-link");
+            } else {
+                topLink.classList.remove("show-top-link");
+            }
+        });
+
+        const scrollLinks = document.querySelectorAll(".scroll-link");
+        scrollLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const id = e.currentTarget.getAttribute("href").slice(1);
+                const element = document.getElementById(id);
+                const navHeight = navbar.getBoundingClientRect().height;
+                const containerHeight = linksContainer.getBoundingClientRect().height;
+                const fixedNav = navbar.classList.contains("fixed-nav");
+                let position = element.offsetTop - navHeight;
+
+                if (!fixedNav) {
+                    position = position - navHeight;
+                }
+                if (navHeight > 82) {
+                    position = position + containerHeight;
+                }
+
+                window.scrollTo({
+                    left: 0,
+                    top: position,
+                });
+                linksContainer.classList.remove("show-links");
+            });
+        });
+    </script>
+</body>
+</html>
